@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {sinify, divideScale} from './utils'
 
 export const useAnimatedScale = (scGap, delay) => {
     const [scale, setScale] = useState(0)
@@ -40,5 +41,27 @@ export const useDimension = () => {
     return {
         w,
         h
+    }
+}
+
+export const useDimension = (w, h, scale) => {
+    const size = Math.min(w, h) / 6
+    const position = 'absolute'
+    const background = '#1565C0'
+    const midX = w / 2
+    const midY = h / 2
+    const sf = sinify(scale)
+    return {
+        getBlockOpenStyle(i) {
+            const sfi = divideScale(sf, i, 2)
+            const x = midX - size + i * (size + size * sfi)
+            const y = midY - size / 2
+            const left = `${x}px`
+            const top = `${y}px`
+            const width = `${size * sfi}px`
+            const height = `${size}px`
+            return {position, left, top, width, height, background}
+
+        }
     }
 }
