@@ -44,7 +44,7 @@ export const useDimension = () => {
     }
 }
 
-export const useDimension = (w, h, scale) => {
+export const useStyle = (w, h, scale) => {
     const size = Math.min(w, h) / 6
     const position = 'absolute'
     const background = '#1565C0'
@@ -53,12 +53,12 @@ export const useDimension = (w, h, scale) => {
     const sf = sinify(scale)
     return {
         getBlockOpenStyle(i) {
-            const sfi = divideScale(sf, i, 2)
-            const x = midX - size + i * (size + size * sfi)
+
+            const x = midX - size + i * (size + size * sf)
             const y = midY - size / 2
             const left = `${x}px`
             const top = `${y}px`
-            const width = `${size * sfi}px`
+            const width = `${size * (1 - sf)}px`
             const height = `${size}px`
             return {position, left, top, width, height, background}
 

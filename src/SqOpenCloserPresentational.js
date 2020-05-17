@@ -8,7 +8,7 @@ const Square = ({i, w, h, scale}) => {
 
 const SqOpenCloserPresentational = ({w, h, scale, onClick}) => {
     return <div onClick = {onClick}>
-        {[0, 1].map(i => <Square i = {i} w = {w} h = {h} scale = {scale}/>)}
+        {[0, 1].map(i => <Square key = {`square_${i}`} i = {i} w = {w} h = {h} scale = {scale}/>)}
     </div>
 }
 
